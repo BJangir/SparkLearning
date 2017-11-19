@@ -1,4 +1,4 @@
-package org.mytest.org.apache.spark.sql
+package org.apache.spark.sql
 
 import org.apache.spark.internal.Logging
 import org.apache.spark.sql._
@@ -9,10 +9,9 @@ import org.apache.spark.sql.catalyst.plans.logical.LogicalPlan
 import org.apache.spark.sql.execution.command.RunnableCommand
 import org.apache.spark.sql.types.{DataType, StructType}
 /**
-  * Created by Babu on 11/14/2017.
-  */
-class MyBuilder  {
-
+ * Created by Administrator on 11/20/2017.
+ */
+class MyBuilder {
   type ExtensionsBuilder = SparkSessionExtensions => Unit
   private def create(builder: ExtensionsBuilder): ExtensionsBuilder = builder
 
@@ -28,12 +27,11 @@ class MyBuilder  {
     SparkSession.clearDefaultSession()
   }
 }
-
 object MyBuilder{
   val myb=new MyBuilder()
   var spark :SparkSession=null
   def main(args: Array[String]): Unit = {
-     spark=SparkSession.builder().appName("x").master("local").enableHiveSupport().getOrCreate();
+    spark=SparkSession.builder().appName("x").master("local").enableHiveSupport().getOrCreate();
     val extension = myb.create { extensions =>
       extensions.injectParser((_, _) => CatalystSqlParser)
       extensions.injectParser(MyParser)
@@ -49,7 +47,7 @@ case class MyParser(spark: SparkSession, delegate: ParserInterface) extends Pars
   override def parsePlan(sqlText: String): LogicalPlan ={
     MyCommand
   }
-    //delegate.parsePlan(sqlText)
+  //delegate.parsePlan(sqlText)
 
   override def parseExpression(sqlText: String): Expression =
     delegate.parseExpression(sqlText)
