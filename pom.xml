@@ -1,10 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>LearningTesy</groupId>
-  <artifactId>LearningTest</artifactId>
+
+  <groupId>SparkLearning</groupId>
+  <artifactId>SparkLearning</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <inceptionYear>2008</inceptionYear>
-  <properties>
+
+<properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <snappy.version>1.1.2.6</snappy.version>
     <hadoop.version>2.7.2</hadoop.version>
@@ -17,24 +21,7 @@
     <hdfs.url>local</hdfs.url>
     <spark.version>2.2.0</spark.version>
   </properties>
-
-  <repositories>
-    <repository>
-      <id>scala-tools.org</id>
-      <name>Scala-Tools Maven2 Repository</name>
-      <url>http://scala-tools.org/repo-releases</url>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>scala-tools.org</id>
-      <name>Scala-Tools Maven2 Repository</name>
-      <url>http://scala-tools.org/repo-releases</url>
-    </pluginRepository>
-  </pluginRepositories>
-
-  <dependencies>
+   <dependencies>
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-library</artifactId>
@@ -51,6 +38,12 @@
       <artifactId>specs</artifactId>
       <version>1.2.5</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka_2.10</artifactId>
+      <version>0.10.2.1</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.kafka</groupId>
@@ -94,7 +87,7 @@
       <scope>${spark.deps.scope}</scope>
     </dependency>
   </dependencies>
-
+  
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
     <plugins>
@@ -170,7 +163,48 @@
               <exclude>net*:*</exclude>
               <exclude>org.jpmml.*:*</exclude>
               <exclude>org.scala*:*</exclude>
-              <exclude>log4j:log4j:jar:</exclude>
+			   <exclude>jline*:*</exclude>
+			    <exclude>org.slf4j*:*</exclude>
+				 <exclude>org.jpmml*:*</exclude>
+				  <exclude>org.spire*:*</exclude>
+				   <exclude>org.spark-project*:*</exclude>
+				    <exclude>org.datanucleus*:*</exclude>
+					 <exclude>org.jodd*:*</exclude>
+					  <exclude>joda-time*:*</exclude>
+					   <exclude>org.iq80*:*</exclude>
+					    <exclude>com.googlecode*:*</exclude>
+						<exclude>antlr*:*</exclude>
+						<exclude>com.fasterxml*:*</exclude>
+						<exclude>org.codehaus*:*</exclude>
+						<exclude>com.clearspring*:*</exclude>
+						<exclude>org.glassfish*:*</exclude>
+						<exclude>org.bouncycastle*:*</exclude>
+						<exclude>org.mortbay*:*</exclude>
+						<exclude>org.xerial*:*</exclude>
+						<exclude>com.yammer*:*</exclude>
+						<exclude>com.101*:*</exclude>
+						<exclude>com.univocity*:*</exclude>
+						<exclude>org*:*</exclude>						
+						<exclude>log4j:log4j:jar:</exclude>
+						<exclude>com.thoughtworks*:*</exclude>
+						<exclude>com.twitter*:*</exclude>
+						<exclude>com.esoter*:*</exclude>
+						<exclude>com.google*:*</exclude>
+						<exclude>xerces*:*</exclude>
+						<exclude>mx4j*:*</exclude>
+						<exclude>com.jamesmurty*:*</exclude>
+						<exclude>com.univocity*:*</exclude>
+						<exclude>oro*:*</exclude>
+						<exclude>javolution*:*</exclude>
+						<exclude>java*:*</exclude>
+						<exclude>com.jolbox*:*</exclude>
+						<exclude>com.chuusai*:*</exclude>
+						<exclude>com.ning*:*</exclude>
+						<exclude>javax*:*</exclude>
+						<exclude>org.znerd*:*</exclude>
+						<exclude>org.apache.log4j*:*</exclude>
+						
+						
             </excludes>
           </artifactSet>
         </configuration>
@@ -185,16 +219,4 @@
       </plugin>
     </plugins>
   </build>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.scala-tools</groupId>
-        <artifactId>maven-scala-plugin</artifactId>
-        <configuration>
-          <scalaVersion>${scala.version}</scalaVersion>
-        </configuration>
-      </plugin>
-
-    </plugins>
-  </reporting>
 </project>
