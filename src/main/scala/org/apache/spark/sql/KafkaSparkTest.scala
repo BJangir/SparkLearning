@@ -16,15 +16,17 @@ object KafkaSparkTest {
     var topic="test"
     var brokers="master:9092"
     if(args.length>=0){
-      val events = args(0).toInt
-      val topic = args(1)
-      val brokers = args(2)
+       events = args(0).toInt
+       topic = args(1)
+       brokers = args(2)
     }
     val rnd = new Random()
 
     val props = new Properties()
-    props.put("bootstrap.servers", "master:9092,slave1:9092,slave2:9092")
-    props.put("client.id", "ScalaProducerExample")
+    //props.put("bootstrap.servers", "master:9092,slave1:9092,slave2:9092")
+    props.put("bootstrap.servers", brokers)
+    props.put("client.id", "Test Example")
+    props.put("topic", topic)
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
 

@@ -222,6 +222,8 @@
 						<exclude>javax*:*</exclude>
 						<exclude>org.znerd*:*</exclude>
 						<exclude>org.apache.log4j*:*</exclude>
+						<exclude>stax:stax*:*</exclude>
+						<exclude>log4j:apache*</exclude>
 						
 						
             </excludes>

@@ -108,7 +108,12 @@ class SparkTestAllStrategy extends FunSuite with BeforeAndAfterAll{
 
   }
 
+  test("Aggregation  "){
+    withConfSupport(SQLConf.CROSS_JOINS_ENABLED.key,"true"){
+      spark.sql("SELECT * FROM nation  FULL OUTER JOIN  region  ")
+    }
 
+  }
 
 
 
