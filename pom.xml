@@ -105,7 +105,34 @@
        <version>3.0.4</version>
        <scope>compile</scope>
      </dependency>
-  </dependencies>
+     <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
+     <dependency>
+       <groupId>org.apache.lucene</groupId>
+       <artifactId>lucene-core</artifactId>
+       <version>7.2.1</version>
+     </dependency>
+     <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser -->
+     <dependency>
+       <groupId>org.apache.lucene</groupId>
+       <artifactId>lucene-queryparser</artifactId>
+       <version>7.2.1</version>
+     </dependency>
+     <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queries -->
+     <dependency>
+       <groupId>org.apache.lucene</groupId>
+       <artifactId>lucene-queries</artifactId>
+       <version>7.2.1</version>
+     </dependency>
+
+     <!-- https://mvnrepository.com/artifact/org.apache.carbondata/carbondata-spark2 -->
+     <dependency>
+       <groupId>org.apache.carbondata</groupId>
+       <artifactId>carbondata-spark2</artifactId>
+       <version>1.3.1</version>
+     </dependency>
+
+
+   </dependencies>
   
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
@@ -123,7 +150,22 @@
           </execution>
         </executions>
       </plugin>
-
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.scala-tools</groupId>
         <artifactId>maven-scala-plugin</artifactId>
