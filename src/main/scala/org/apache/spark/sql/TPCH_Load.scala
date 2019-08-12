@@ -1,10 +1,8 @@
 package org.apache.spark.sql
 
 import scala.util.control.Breaks
-import scala.util.control.Breaks
 
 import org.apache.spark.SparkConf
-import org.apache.spark.sql.CarbonSession._
 /**
  * Created by Administrator on 3/27/2018.
  */
@@ -12,7 +10,8 @@ object TPCH_Load {
   def main(args: Array[String]): Unit = {
     val conf=new SparkConf().setMaster("yarn-client").setAppName("TPCH")
 
-    val cc = SparkSession.builder().config(conf).getOrCreateCarbonSession()
+   // val cc = SparkSession.builder().config(conf).getOrCreateCarbonSession()
+   val cc = SparkSession.builder().config(conf).getOrCreate()
 
     try{
       println("start");

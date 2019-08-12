@@ -7,11 +7,22 @@
   <groupId>SparkLearning</groupId>
   <artifactId>SparkLearning</artifactId>
   <version>1.0-SNAPSHOT</version>
-
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>7</source>
+          <target>7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <snappy.version>1.1.2.6</snappy.version>
-    <hadoop.version>2.7.2</hadoop.version>
+    <hadoop.version>2.8.3</hadoop.version>
     <scala.binary.version>2.11</scala.binary.version>
     <scala.version>2.11.8</scala.version>
     <hadoop.deps.scope>compile</hadoop.deps.scope>
@@ -19,7 +30,7 @@
     <scala.deps.scope>compile</scala.deps.scope>
     <spark.master.url>local[2]</spark.master.url>
     <hdfs.url>local</hdfs.url>
-    <spark.version>2.2.0</spark.version>
+    <spark.version>2.2.1</spark.version>
   </properties>
    <dependencies>
     <dependency>
@@ -79,14 +90,40 @@
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-sql_${scala.binary.version}</artifactId>
       <version>${spark.version}</version>
-      <scope>${spark.deps.scope}</scope>
+      <!--<scope>${spark.deps.scope}</scope>-->
     </dependency>
+     <dependency>
+       <groupId>org.apache.spark</groupId>
+       <artifactId>spark-core_${scala.binary.version}</artifactId>
+       <version>${spark.version}</version>
+       <!--<scope>${spark.deps.scope}</scope>-->
+     </dependency>
      <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-mllib -->
      <dependency>
        <groupId>org.apache.spark</groupId>
        <artifactId>spark-mllib_${scala.binary.version}</artifactId>
-       <version>2.2.0</version>
+       <version>${spark.version}</version>
+	    <!--<scope>${spark.deps.scope}</scope>-->
      </dependency>
+ <dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-hive_${scala.binary.version}</artifactId>
+    <version>${spark.version}</version>
+    <!--<scope>${spark.deps.scope}</scope>-->
+  </dependency>
+     <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+     <dependency>
+       <groupId>org.apache.httpcomponents</groupId>
+       <artifactId>httpclient</artifactId>
+       <version>4.5.6</version>
+     </dependency>
+     <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-hdfs -->
+     <dependency>
+       <groupId>org.apache.hadoop</groupId>
+       <artifactId>hadoop-hdfs</artifactId>
+       <version>2.8.3</version>
+     </dependency>
+
 
 
      <dependency>
@@ -131,14 +168,149 @@
        <artifactId>lucene-queries</artifactId>
        <version>7.2.1</version>
      </dependency>
+     <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-aws -->
+     <dependency>
+       <groupId>org.apache.hadoop</groupId>
+       <artifactId>hadoop-aws</artifactId>
+       <version>${hadoop.version}</version>
+     </dependency>
+
+     <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+     <dependency>
+       <groupId>org.apache.httpcomponents</groupId>
+       <artifactId>httpclient</artifactId>
+       <version>4.5.6</version>
+     </dependency>
+
 
      <!-- https://mvnrepository.com/artifact/org.apache.carbondata/carbondata-spark2 -->
-     <dependency>
+    <!-- <dependency>
        <groupId>org.apache.carbondata</groupId>
        <artifactId>carbondata-spark2</artifactId>
        <version>1.3.1</version>
+     </dependency>-->
+     <!-- https://mvnrepository.com/artifact/com.github.luben/zstd-jni -->
+     <dependency>
+       <groupId>com.github.luben</groupId>
+       <artifactId>zstd-jni</artifactId>
+       <version>1.3.5-3</version>
      </dependency>
 
+     <dependency>
+       <groupId>org.apache.parquet</groupId>
+       <artifactId>parquet-avro</artifactId>
+       <version>1.9.0</version>
+     </dependency>
+
+     <!-- https://mvnrepository.com/artifact/org.apache.parquet/parquet-hadoop -->
+     <dependency>
+       <groupId>org.apache.parquet</groupId>
+       <artifactId>parquet-hadoop</artifactId>
+       <version>1.9.0</version>
+     </dependency>
+
+     <dependency>
+       <groupId>org.apache.hadoop</groupId>
+       <artifactId>hadoop-common</artifactId>
+       <version>${hadoop.version}</version>
+       <scope>${hadoop.deps.scope}</scope>
+       <exclusions>
+         <exclusion>
+           <groupId>io.netty</groupId>
+           <artifactId>netty-all</artifactId>
+         </exclusion>
+         <exclusion>
+           <groupId>javax.servlet</groupId>
+           <artifactId>*</artifactId>
+         </exclusion>
+         <exclusion>
+           <groupId>javax.servlet.jsp</groupId>
+           <artifactId>*</artifactId>
+         </exclusion>
+       </exclusions>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.hadoop</groupId>
+       <artifactId>hadoop-hdfs</artifactId>
+       <version>${hadoop.version}</version>
+       <scope>${hadoop.deps.scope}</scope>
+       <exclusions>
+         <exclusion>
+           <groupId>io.netty</groupId>
+           <artifactId>netty-all</artifactId>
+         </exclusion>
+         <exclusion>
+           <groupId>javax.servlet</groupId>
+           <artifactId>*</artifactId>
+         </exclusion>
+         <exclusion>
+           <groupId>javax.servlet.jsp</groupId>
+           <artifactId>*</artifactId>
+         </exclusion>
+       </exclusions>
+     </dependency>
+
+     <dependency>
+       <groupId>org.apache.hadoop</groupId>
+       <artifactId>hadoop-mapreduce-client-core</artifactId>
+       <version>${hadoop.version}</version>
+       <scope>${hadoop.deps.scope}</scope>
+       <exclusions>
+         <exclusion>
+           <groupId>io.netty</groupId>
+           <artifactId>netty-all</artifactId>
+         </exclusion>
+         <exclusion>
+           <groupId>javax.servlet</groupId>
+           <artifactId>*</artifactId>
+         </exclusion>
+         <exclusion>
+           <groupId>javax.servlet.jsp</groupId>
+           <artifactId>*</artifactId>
+         </exclusion>
+       </exclusions>
+     </dependency>
+     <dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-client</artifactId>
+    <version>${hadoop.version}</version>
+  </dependency>
+     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+     <dependency>
+       <groupId>com.fasterxml.jackson.core</groupId>
+       <artifactId>jackson-core</artifactId>
+       <version>2.9.6</version>
+     </dependency>
+     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+     <dependency>
+       <groupId>com.fasterxml.jackson.core</groupId>
+       <artifactId>jackson-annotations</artifactId>
+       <version>2.9.6</version>
+     </dependency>
+      <!-- https://mvnrepository.com/artifact/com.fasterxml.uuid/java-uuid-generator -->
+  <dependency>
+    <groupId>com.fasterxml.uuid</groupId>
+    <artifactId>java-uuid-generator</artifactId>
+    <version>3.1.5</version>
+  </dependency>
+     <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-core -->
+     <dependency>
+       <groupId>com.amazonaws</groupId>
+       <artifactId>aws-java-sdk-core</artifactId>
+       <version>1.11.386</version>
+     </dependency>
+     <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-kms -->
+     <dependency>
+       <groupId>com.amazonaws</groupId>
+       <artifactId>aws-java-sdk-kms</artifactId>
+       <version>1.11.386</version>
+     </dependency>
+     <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
+     <dependency>
+       <groupId>com.amazonaws</groupId>
+       <artifactId>aws-java-sdk-s3</artifactId>
+       <version>1.11.386</version>
+     </dependency>
 
    </dependencies>
   

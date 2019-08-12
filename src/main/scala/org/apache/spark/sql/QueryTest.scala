@@ -2,11 +2,6 @@ package org.apache.spark.sql
 
 import scala.util.control.Breaks
 
-import org.apache.spark.SparkConf
-import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.CarbonSession._
-import org.apache.spark.sql.SparkSession.builder
-
 
 /**
  * Created by Administrator on 3/20/2018.
@@ -15,7 +10,7 @@ object QueryTest {
 
 
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit = {/*
 
     //val cc = SparkSession.builder().master("yarn-client").appName("aaa").getOrCreateCarbonSession("hdfs://master:9000/carbonstore","/opt/babu/metasore_db")
     val cc = SparkSession.builder().master("yarn-client").appName("aaa").getOrCreateCarbonSession()
@@ -40,7 +35,7 @@ object QueryTest {
     }
 
     cc.stop()
-
+*/
   }
 
 
