@@ -78,6 +78,7 @@ String lock2="D:/data/mylocak2";
     reader.close();
 
   }
+  /*
   public static LockFactory getlockFacorty(String path){
     return new LockFactory() {
       @Override public Lock obtainLock(Directory directory, String s) throws IOException {
@@ -85,6 +86,7 @@ String lock2="D:/data/mylocak2";
       }
     };
   }
+  */
 }
 class SimpleLocal extends Lock{
  String path;
